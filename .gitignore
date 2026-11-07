@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+
+# Dataset files
+data/raw/
+data/processed/
+
+# Model files are retained for deployment
+# Keep models/brain_tumor_cnn.keras
+
+# Python testing
+.pytest_cache/
+.coverage
+podman-build-demo/*.tar
