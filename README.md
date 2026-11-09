@@ -113,7 +113,7 @@ brain-tumor-mri-classifier/
 Clone the repository:
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/KurraPrasanth/brain-tumor-mri-classifier.git
 cd brain-tumor-mri-classifier
 ```
 
@@ -144,59 +144,60 @@ http://localhost:8501
 
 ## 9. Podman Deployment
 
-Build the custom image:
+### Build the application image
 
 ```bash
-podman build -t brain-tumor-mri:v1 .
+podman build -t brain-tumor-mri:v2 .
 ```
 
-List images:
+### Verify the image
 
 ```bash
 podman images
+podman image inspect brain-tumor-mri:v2
 ```
 
-Run the container:
+### Run the application
 
 ```bash
-podman run -d --name brain-tumor-app -p 8501:8501 brain-tumor-mri:v1
+podman run -d --name brain-tumor-app -p 8501:8501 brain-tumor-mri:v2
 ```
 
-Check running containers:
+### Container management
 
 ```bash
 podman ps
-```
-
-View application logs:
-
-```bash
+podman ps -a
 podman logs brain-tumor-app
-```
-
-Check port mapping:
-
-```bash
 podman port brain-tumor-app
-```
-
-Stop the container:
-
-```bash
 podman stop brain-tumor-app
-```
-
-Restart the container:
-
-```bash
 podman start brain-tumor-app
-```
-
-Remove the container:
-
-```bash
 podman rm brain-tumor-app
 ```
+
+### Docker Hub deployment
+
+Published image:
+
+```text
+docker.io/prasanth2927/brain-tumor-mri:v2
+```
+
+Pull the published image:
+
+```bash
+podman pull docker.io/prasanth2927/brain-tumor-mri:v2
+```
+
+Run the downloaded image:
+
+```bash
+podman run -d --name brain-tumor-demo -p 8501:8501 docker.io/prasanth2927/brain-tumor-mri:v2
+```
+
+Docker Hub repository:
+
+https://hub.docker.com/r/prasanth2927/brain-tumor-mri
 
 ## 10. Podman Networking
 
@@ -206,11 +207,13 @@ Create a custom network:
 podman network create brain-tumor-net
 ```
 
-Run a container on the custom network:
+Run a separate Nginx demonstration container on the custom network:
 
 ```bash
 podman run -d --name network-demo --network brain-tumor-net nginx
 ```
+This Nginx container demonstrates custom network attachment. It is separate from the Brain Tumor MRI application container.
+
 
 Inspect the network:
 
@@ -256,7 +259,6 @@ The application supports:
 
 ## 13. Future Enhancements
 
-- Add MRI image input validation.
 - Improve model performance and generalization.
 - Add multi-class tumor classification.
 - Implement prediction history.
